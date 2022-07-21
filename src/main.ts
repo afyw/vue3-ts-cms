@@ -14,4 +14,17 @@ app.use(store)
 // app.use(ElementPlus)
 app.mount('#app')
 
-hyRequest.request({ url: '/home/multidata', method: 'GET' })
+interface DataType {
+  data: any
+  returnCode: string
+  success: boolean
+}
+
+hyRequest
+  .get<DataType>({
+    url: '/home/multidata',
+    showLoading: false
+  })
+  .then((res) => {
+    console.log(res.data)
+  })

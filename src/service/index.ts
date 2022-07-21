@@ -6,6 +6,11 @@ const hyRequest = new HYRequest({
   timeout: TIME_OUT,
   interceptors: {
     requestInterceptor: (config) => {
+      // 携带token拦截
+      const token = ''
+      if (token) {
+        config.headers!.Authorization = `Bear ${token}`
+      }
       console.log('请求成功拦截')
       return config
     },
