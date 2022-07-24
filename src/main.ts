@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
 import { registerAPP } from './global'
+import 'normalize.css'
+import './assets/css/index.less'
 // 全局引入
 // import ElementPlus from 'element-plus'
 // import 'element-plus/dist/index.css'
@@ -20,11 +22,10 @@ interface DataType {
   success: boolean
 }
 
-hyRequest
-  .get<DataType>({
-    url: '/home/multidata',
-    showLoading: false
-  })
-  .then((res) => {
-    console.log(res.data)
-  })
+// hyRequest
+//   .get<DataType>({
+//     url: '/home/multidata'
+//   })
+//   .then((res) => {
+//     console.log(res.data)
+//   })
