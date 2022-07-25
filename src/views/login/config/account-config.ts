@@ -13,7 +13,7 @@ export const rules = {
     { required: true, message: '缺少密码', trigger: 'blur' },
     {
       // 正则表达式
-      pattern: /^[a-zA-Z]\w{5,17}$/,
+      pattern: /^[a-z0-9]{6,}$/,
       message: '密码不符合要求',
       trigger: 'blur'
     }

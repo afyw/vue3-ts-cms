@@ -8,11 +8,12 @@ import './assets/css/index.less'
 import rootApp from './App.vue'
 import router from './router'
 import store from './store'
-import hyRequest from './service'
+import { setupStore } from './store'
 const app = createApp(rootApp)
 registerAPP(app)
 app.use(router)
 app.use(store)
+setupStore()
 // app.use(ElementPlus)
 app.mount('#app')
 
