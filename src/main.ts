@@ -11,9 +11,9 @@ import store from './store'
 import { setupStore } from './store'
 const app = createApp(rootApp)
 registerAPP(app)
+setupStore()
 app.use(router)
 app.use(store)
-setupStore()
 // app.use(ElementPlus)
 app.mount('#app')
 

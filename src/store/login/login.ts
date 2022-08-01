@@ -6,10 +6,11 @@ import {
   requestUserMenuByRoleId
 } from '@/service/login/login'
 import localCache from '@/utils/cache'
+import { mapMenusToRoutes } from '@/utils/map-menus'
 import router from '@/router'
 
 import { IAccount } from '@/service/login/type'
-import { ILoginState } from './types'
+import { ILoginState, userMenusObj } from './types'
 import { IRootState } from '../types'
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -29,6 +30,22 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
+      // 对后端返回的icon属性进行处理
+      state.userMenus.forEach((obj: userMenusObj) => {
+        const temp: string = obj.icon.split('-')[2]
+        if (temp) {
+          obj.icon = temp[0].toUpperCase() + obj.icon.split('-')[2].slice(1)
+        } else {
+          obj.icon = obj.icon[0].toUpperCase() + obj.icon.slice(1)
+        }
+      })
+      // userMenus => routes
+      const routes = mapMenusToRoutes(userMenus)
+      // console.log(routes)
+      // 将routes =>router.main.children
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
     }
   },
   getters: {},
@@ -43,12 +60,14 @@ const loginModule: Module<ILoginState, IRootState> = {
       //2.请求获取用户信息
       const userInfoResult = await requestUserInfoById(id)
       const userInfo = userInfoResult.data
+      console.log(userInfo)
       commit('getUserInfo', userInfo)
       localCache.setCache('userInfo', userInfo)
 
       // 3.根据用户角色请求菜单
       const UserMenusResult = await requestUserMenuByRoleId(userInfo.role.id)
       const userMenus = UserMenusResult.data
+      console.log(userMenus)
       commit('changeUserMenus', userMenus)
       localCache.setCache('userMenus', userMenus)
 
@@ -67,8 +86,8 @@ const loginModule: Module<ILoginState, IRootState> = {
       }
 
       const userMenus = localCache.getCache('userMenus')
-      if (userInfo) {
-        commit('changeUserMenus', userInfo)
+      if (userMenus) {
+        commit('changeUserMenus', userMenus)
       }
     },
     phoneLoginAction({ commit }, payload: any) {

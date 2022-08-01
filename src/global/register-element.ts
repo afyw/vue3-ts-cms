@@ -12,7 +12,27 @@ import {
   ElTabPane,
   ElIcon,
   ElCheckbox,
-  ElLink
+  ElLink,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElMenu,
+  ElSubMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElAvatar,
+  ElCol,
+  ElRow,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn
 } from 'element-plus'
 
 const components = [
@@ -27,7 +47,27 @@ const components = [
   ElTabPane,
   ElIcon,
   ElCheckbox,
-  ElLink
+  ElLink,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElMenu,
+  ElSubMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElAvatar,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn
 ]
 export default function (app: App): void {
   for (const component of components) {

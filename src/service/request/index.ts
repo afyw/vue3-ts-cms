@@ -71,7 +71,7 @@ class HYRequest {
   }
 
   // 请求拦截器
-  request<T>(config: HYRequestConfig<T>): Promise<T> {
+  request<T = any>(config: HYRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       if (config.interceptors?.requestInterceptor) {
         config = config.interceptors.requestInterceptor(config)
@@ -98,13 +98,13 @@ class HYRequest {
     })
   }
 
-  get<T>(config: HYRequestConfig<T>): Promise<T> {
+  get<T = any>(config: HYRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
-  post<T>(config: HYRequestConfig<T>): Promise<T> {
+  post<T = any>(config: HYRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
-  delete<T>(config: HYRequestConfig<T>): Promise<T> {
+  delete<T = any>(config: HYRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
   patch<T>(config: HYRequestConfig<T>): Promise<T> {
